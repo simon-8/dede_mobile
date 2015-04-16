@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi" lang="fi">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>网站管理后台</title>
+		<style type="text/css">/*<![CDATA[*/
+			@import "css/login.css";
+		/*]]>*/</style>
+	</head>
+	<link href="css/login.css" rel="stylesheet" type="text/css" />
+<body>
+<div id="login-box">
+   <div class="login-top"><a href="../index.php" target="_blank" title="返回网站主页">返回网站主页</a></div>
+      <a href="http://www.finesales.com.cn" target="_blank"><img src="images/logo.jpg" width="199" height="82" style="padding:88px 0 0 25px; float:left;"></a>
+   <div class="login-main">
+    <form name="form1" method="post" action="login.php">
+      <input type="hidden" name="gotopage" value="<?php if(!empty($gotopage)) echo RemoveXSS($gotopage);?>" />
+      <input type="hidden" name="dopost" value="login" />
+      <input name='adminstyle' type='hidden' value='newdedecms' />
+      <dl style="float:left; width:245px; height:100px;">
+	   <dt>用户名：</dt>
+	   <dd><input type="text" name="userid"/></dd>
+	   <dt>密&nbsp;&nbsp;码：</dt>
+	   <dd><input type="password" class="alltxt" name="pwd"/></dd>
+	   	   <dt>验证码：</dt>
+	   <dd><input id="vdcode" type="text" name="validate" style="text-transform:uppercase;"/><img id="vdimgck" align="absmiddle" onClick="this.src=this.src+'?'" style="cursor: pointer;" alt="看不清？点击更换" src="../include/vdimgck.php"/>
+           <!--<a href="#" onClick="changeAuthCode();">看不清？ </a>--></dd>
+				<dt>&nbsp;</dt>
+		
+	 </dl>
+	 <dl style="float:left; width:105px; height:95px;"><dd><button type="submit" name="sm1" class="login-btn" onclick="this.form.submit();"></button></dd></dl>
+	 <div style="clear:both"></div>
+	</form>
+	<div style="clear:both"></div>
+	<div style="clear:both" class="login_con_right_3">
+	专业打造：优化型网站策划、优化型网站建设、企业网络营销规划、企业网络营销实施的上海优秀品牌！
+	</div>
+	
+   </div>
+   <div style="clear:both"></div>
+   <div class="login_bottom"><a href="http://www.finesales.com.cn" target="_blank"><img src="images/_r8_c3.jpg" width="648" height="113"></a></div>
+   <div style="clear:both"></div>
+   <div class="foot">Copyright <img src="images/8886.jpg" width="15" height="11"> 2010 涌砚科技. All Rights Reserved</div>
+   <div style="clear:both"></div>
+</div>
+</body>
+</html>

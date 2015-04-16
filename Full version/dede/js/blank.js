@@ -1,0 +1,5 @@
+function CheckSubmit(){
+	return true; 
+}
+
+

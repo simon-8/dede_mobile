@@ -1,0 +1,44 @@
+DROP TABLE IF EXISTS `dede_myppt`;
+
+CREATE TABLE `dede_myppt` (
+  `aid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `typeid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `orderid` int(10) NOT NULL DEFAULT '0',
+  `title` varchar(60) NOT NULL DEFAULT '',
+  `pic` varchar(255) NOT NULL DEFAULT '',
+  `url` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`aid`),
+  KEY `orderid` (`orderid`,`typeid`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+DROP TABLE IF EXISTS `dede_myppttype`;
+
+CREATE TABLE `dede_myppttype` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `typename` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+DROP TABLE IF EXISTS `dede_wapchannel`;
+
+CREATE TABLE `dede_wapchannel` (
+  `typeid` int(11) NOT NULL,
+  `mobile` tinyint(3) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `dede_wapconfig`;
+
+CREATE TABLE `dede_wapconfig` (
+  `var` varchar(255) CHARACTER SET gbk NOT NULL,
+  `value` varchar(255) CHARACTER SET gbk NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `dede_waptype`;
+
+CREATE TABLE `dede_waptype` (
+  `typeid` int(11) NOT NULL,
+  `typelitpic` varchar(255) CHARACTER SET gbk DEFAULT NULL,
+  `enname` varchar(255) CHARACTER SET gbk DEFAULT NULL,
+  `listorder` int(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+

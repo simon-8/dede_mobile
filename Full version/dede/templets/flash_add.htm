@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=gbk'>
+<title>友情链接管理</title>
+<script language='javascript'>
+function CheckSubmit()
+{
+	if(document.form1.url.value=="http://"||document.form1.url.value=="")
+	{
+   		document.form1.url.focus();
+   		alert("網址不能為空！");
+   		return false;
+	}
+	if(document.form1.webname.value=="")
+	{
+   		document.form1.webname.focus();
+   		alert("網站名稱不能為空！");
+   		return false;
+	}
+	return true;
+}
+</script>
+<link href='img/base.css' rel='stylesheet' type='text/css'>
+</head>
+<body background='img/allbg.gif' leftmargin='8' topmargin='8'>
+<table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D1DDAA">
+  <tr>
+    <td height="28" background="img/tbg.gif"><b><a href="flash_main.php"><u>幻灯广告管理</u></a></b>&gt;&gt;增加幻灯广告</td>
+</tr>
+<tr>
+    <td height="200" bgcolor="#FFFFFF" valign="top">
+	<form action="flash_add.php" method="post" enctype="multipart/form-data" name="form1" onSubmit="return CheckSubmit();";>
+	<input type="hidden" name="dopost" value="add" />
+	<table width="80%"  border="0" cellspacing="1" cellpadding="3">
+	  <tr>
+        <td width="19%" height="25">链接地址：</td>
+        <td width="81%">
+        	<input name="url" type="text" id="url" value="http://" size="30" class='pubinputs' /></td>
+      </tr>
+      <tr>
+        <td height="25">图片名称：</td>
+        <td>
+        	<input name="webname" type="text" id="webname" size="30" class='pubinputs' />
+        </td>
+      </tr>
+      <tr>
+        <td width="19%" height="25">排列位置：</td>
+        <td width="81%">
+        <input name="sortrank" type="text" id="sortrank" value="1" size="10" class='pubinputs' style='width:60px' />
+        (由小到大排列)
+        </td>
+      </tr>
+      <tr>
+        <td height="25">幻灯图片：</td>
+        <td>
+        	<input name="flash" type="text" id="flash" size="30" class='pubinputs' />
+          (706*244 gif或jpg)
+        </td>
+      </tr>
+      <tr>
+        <td height="25">图片上传：</td>
+        <td>
+        	<input name="flashimg" type="file" id="flashimg" size="30" class='pubinputs' />
+        </td>
+      </tr>
+      <tr>
+        <td height="25">图片简况：</td>
+        <td><textarea name="msg" cols="50" rows="4" class="txt" id="msg"></textarea></td>
+      </tr>
+      <tr>
+        <td height="25">幻灯位置：</td>
+        <td>
+        <input type='radio' name='ischeck' value="2" checked='1' /> 首页
+        <input type='radio' name='ischeck' value="1" /> 内页
+        </td>
+      </tr>
+      <tr>
+        <td height="51">&nbsp;</td>
+        <td>
+        	<input type="submit" name="Submit" value=" 提 交 " class="coolbg np" />　 　
+          <input type="reset" name="Submit" value=" 重 置 " class="coolbg np" />
+         </td>
+      </tr>
+    </table>
+	</form>
+ </td>
+</tr>
+</table>
+</body>
+</html>

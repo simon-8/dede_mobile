@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>评论管理</title>
+
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<script language="javascript" src="js/jquery.min.js" type="text/javascript"></script>	
+<script type="text/javascript" src="js/admin.jquery.configuration.js"></script>
+
+<script language="javascript" src="js/global.js"></script>
+<script language="javascript" src="../include/js/dedeajax2.js"></script>
+<script language='javascript'>
+//获得选中文件的文件名
+function getCheckboxItem()
+{
+	var allSel="";
+	if(document.feedback.fid.value) return document.feedback.fid.value;
+	for(i=0;i<document.feedback.fid.length;i++)
+	{
+		if(document.feedback.fid[i].checked)
+		{
+			if(allSel=="")
+				allSel=document.feedback.fid[i].value;
+			else
+				allSel=allSel+","+document.feedback.fid[i].value;
+		}
+	}
+	return allSel;	
+}
+function selAll()
+{
+	for(i=0;i<document.feedback.fid.length;i++)
+	{
+		document.feedback.fid[i].checked=true;
+	}
+}
+function selNone()
+{
+	for(i=0;i<document.feedback.fid.length;i++)
+	{
+		document.feedback.fid[i].checked=false;
+	}
+}
+function selNor()
+{
+	for(i=0;i<document.feedback.fid.length;i++)
+	{
+		if(document.feedback.fid[i].checked==false)
+			document.feedback.fid[i].checked=true;
+		else
+			document.feedback.fid[i].checked=false;
+		
+	}
+}
+function delFeedback()
+{
+	var qstr=getCheckboxItem();
+	if(qstr=="") alert("你没选中任何内容！");
+	else if(window.confirm('你确定要删除这些评论吗?')) location.href="feedback_main.php?job=del&fid="+qstr;
+}
+function delFeedbackIP()
+{
+	var qstr=getCheckboxItem();
+	if(qstr=="") alert("你没选中任何内容！");
+	else if(window.confirm('你确定要删除这些评论吗?')) location.href="feedback_main.php?job=delall&fid="+qstr;
+}
+function checkFeedback()
+{
+	var qstr=getCheckboxItem();
+	if(qstr=="") alert("您没选中任何内容！");
+	else location.href="feedback_main.php?job=check&fid="+qstr;
+}
+function editFeedback()
+{
+	var qstr=getCheckboxItem();
+	if(qstr=="") alert("您没选中任何内容！");
+	else location.href="feedback_edit.php?job=edit&fid="+qstr;
+}
+</script>
+
+
+
+
+<style>
+.coolbg2 {
+border: 1px solid #000000;
+background-color: #F2F5E9;
+height:18px
+}
+.coolbt2 {
+  border-left: 2px solid #EFEFEF;
+  border-top: 2px solid #EFEFEF;
+  border-right: 2px solid #ACACAC;
+  border-bottom: 2px solid #ACACAC;
+  background-color: #F7FCDA
+}
+.nbline {border-bottom: 1px solid #d6d6d6; background-color:#FFFFFF; }
+.bline2 {border-bottom: 1px solid #d6d6d6; background-color:#F9FCEF; }
+</style>
+</head>
+<body onLoad="ContextMenu.intializeContextMenu()">
+
+<div id="main-content">
+<script language="javascript">
+$("#articles").addClass("current");$("#feedback_main").addClass("current");</script>				
+
+	<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>评论管理</h3>
+					
+					<ul class="content-box-tabs">
+                    	<div style="margin-top:-10px;">                   
+                        <form name='form1'>
+                            关键字：
+                            <input type='text' size='15' name='keyword' style='width:150'> 
+                            <select name="typeid" style="width:180">
+                                <option value="0">--请选择--</option>
+                                {dede:global.openarray /}
+                            </select>
+                            
+                            <input class="button" onclick="selAll()" name="sb" type="submit" value="搜索" />
+                        </form>
+                        </div>
+					</ul>
+					
+					<div class="clear"></div>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+<div class="tab-content  default-tab" id="tab1">				
+<table width="98%" border="0" cellpadding="3" align="center" cellspacing="1">
+
+<form name='feedback'>
+<tr>
+<td height="215" valign="top">
+<table width='100%' border='0' cellpadding='0' cellspacing='0'>
+{dede:datalist}
+<tr height='25'> 
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="1" >
+<tr > 
+<td width="9%">
+	&nbsp;选择 <input name="fid" type="checkbox" class="np" id="fid" value="{dede:field.id/}"> 
+</td>
+<td width="12%">
+	用户：{dede:field.username/}
+</td>
+<td width="30%">
+	文档：<a href='feedback_main.php?aid={dede:field.aid/}'><u>{dede:field.arctitle/}</u></a> (<a href="{dede:global.cfg_phpurl /}/view.php?aid={dede:field.aid/}" target="_blank"><u>浏览</u></a>)
+</td>
+<td width="18%" align="center">
+	IP地址：<a href='feedback_main.php?ip={dede:field.ip/}'><u>{dede:field.ip/}</u></a>
+</td>
+<td width="21%">
+	时间：{dede:field.dtime function="GetDateTimeMK(@me)" /}
+</td>
+<td width="10%" align="center">
+
+  <input class="button" onclick="location='feedback_edit.php?id={dede:field.id/}';" name="imageField" type="button" value="编辑" /> 
+</td>
+</tr>
+<tr align="center"> 
+<td height="28" colspan="6">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td align="left">
+{dede:field.ischeck function="IsCheck(@me)" /}
+{dede:field.msg function='cn_substr(Text2Html(@me), 50)'/}
+</td>
+</tr>
+</table></td>
+</tr>
+</table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td height="3"></td>
+</tr>
+</table></td>
+</tr>
+{/dede:datalist}
+<tr>
+<td height='20' align='center'>
+  {dede:pagelist listsize='5' /}
+</td>
+</tr>
+<tr> 
+<td height='30'>
+<table width="98%">
+<tr>
+<td width="30%">
+  <input class="button" onclick="selAll()" name="imageField" type="button" value="全选" />
+  <input class="button" onclick="selNone()" name="imageField" type="button" value="取消" />
+<input class="button" name="kk3" onclick="selNor()" type="button" value="反选" />
+
+</td>
+<td align="right">
+<input class="button" name="db" onclick="delFeedbackIP()" type="button" value="删除相同IP的所有评论" />
+<input class="button" name="db" onclick="delFeedback()" type="button" value="删除评论" />
+<input class="button" name="db2" onclick="checkFeedback()" type="button" value="审核评论" />
+
+</td>
+</tr>
+</table>
+ </td>
+</tr>
+</table>
+</td>
+</tr>
+</form>
+</table>
+							
+							<div class="clear"></div><!-- End .clear -->
+							
+						
+						
+					</div> <!-- End #tab1 -->
+
+					
+				</div> <!-- End .content-box-content -->
+				
+			</div> <!-- End .content-box -->
+			
+			<div class="clear"></div>
+			
+           <?php include(DEDEADMIN.'/templets/footer.htm'); ?>
+			
+		</div> <!-- End #main-content -->	
+	</div>
+</body>
+</html>
+

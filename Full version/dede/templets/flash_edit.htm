@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=gbk'>
+<title>友情链接更改</title>
+<link href='img/base.css' rel='stylesheet' type='text/css'>
+</head>
+<body background='img/allbg.gif' leftmargin='8' topmargin='8'>
+<table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D1DDAA">
+  <tr>
+    <td height="28" background="img/tbg.gif"><b><a href="flash_main.php"><u>幻灯图片管理</u></a></b> &gt;&gt; 幻灯图片更改</td>
+</tr>
+<tr>
+    <td height="200" bgcolor="#FFFFFF" valign="top">
+	<form action="flash_edit.php" method="post" enctype="multipart/form-data" name="form1">
+	<input type="hidden" name="id" value="<?php echo $myFlash['id']?>">
+	<input type="hidden" name="dopost" value="saveedit">
+	<table width="80%"  border="0" cellspacing="1" cellpadding="3">
+	  <tr>
+        <td width="19%" height="25">链接地址：</td>
+        <td width="81%">
+        <input name="url" type="text" id="url" value="<?php echo $myFlash['url']?>" size="30" class='pubinputs' />        </td>
+      </tr>
+      <tr>
+        <td width="19%" height="25">排列位置：</td>
+        <td width="81%">
+        <input name="sortrank" type="text" id="sortrank" value="<?php echo $myFlash['sortrank']?>" size="10" style="width:60px" />
+        (由小到大排列)        </td>
+      </tr>
+      <tr>
+        <td height="25">图片名称：</td>
+        <td><input name="webname" type="text" id="webname" size="30" value="<?php echo $myFlash['webname']?>" class='pubinputs' /></td>
+      </tr>
+      <tr>
+        <td height="25">幻灯图片：</td>
+        <td>
+        	<input name="flash" type="text" id="flash" size="40" value="<?php echo $myFlash['pic']?>" class='pubinputs'/>
+          (706*244 gif或jpg)         </td>
+      </tr>
+      <tr>
+        <td height="25">上传图片：</td>
+        <td><input name="flashimg" type="file" id="flashimg" value="<?php echo $myFlash['pic']?>" size="30" class='pubinputs' /></td>
+      </tr>
+      <tr>
+        <td height="25">幻灯简况：</td>
+        <td><textarea name="msg" cols="50" rows="4" id="msg"><?php echo $myFlash['msg']?></textarea></td>
+      </tr>
+      <tr>
+        <td height="25">链接位置：</td>
+        <td><input type='radio' name='ischeck' value="0" <?php if($myFlash['ischeck']==0) echo " checked='1' "?>/>
+未审核
+  <input type='radio' name='ischeck' value="1" <?php if($myFlash['ischeck']==1) echo " checked='1' "?>/>
+内页
+<input type='radio' name='ischeck' value="2" <?php if($myFlash['ischeck']==2) echo " checked='1' "?>/>
+首页 </td>
+      </tr>
+      <tr>
+        <td height="51">&nbsp;</td>
+        <td>
+        	<input type="submit" name="Submit" value=" 提 交 " class="np coolbg" />　 　
+          <input type="reset" name="Submit" value=" 返 回 " onClick="location.href='<?php echo $ENV_GOBACK_URL?>';" class="np coolbg" />         </td>
+      </tr>
+    </table>
+	</form>
+ </td>
+</tr>
+</table>
+</body>
+</html>

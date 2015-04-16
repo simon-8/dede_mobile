@@ -1,0 +1,24 @@
+<?php include($cfg_templets_dir."/wap/head.html");?>
+<?php include($cfg_templets_dir."/wap/header-show.html");?>
+<div class="aside-left main" id="main">
+  <div class="mains">
+
+<div class="wapindex wapindex-aspx">
+<div class="content"><h2 class="titleview"><?php echo $title;?></h2> <span class="subtitleview"><?php echo date('Y-m-d H:i:s',$addtime);?>&nbsp;&nbsp;<?php echo $click;?>阅</span><div id="KL_margin" style="margin:8px;"></div><p align="center"></p>
+<!--listS-->
+<?php if(strlen($content)){
+ 	echo $content;
+ }elseif ($cont['redirecturl']) {  ?>
+ <script type="text/javascript">
+location="<?php echo $cont['redirecturl'];?>";
+ </script>
+	<!-- <iframe src="<?php echo $cont['redirecturl'];?>" frameborder="0" width="100%" height="500"></iframe> -->
+<?php }?>
+<!--listE--><span id="KL_show_next_list"></span></div>
+
+<div class="nexttitle"><a href="<?php echo $prev['url'];?>"><span id="nextgo">&nbsp;</span><?php echo $prev['title'];?></a><br><a href="<?php echo $next['url'];?>"><span id="nextpre">&nbsp;</span><?php echo $next['title'];?></a></div>
+
+<!-- <div class="btBox"><div class="bt2"><a href="tel:18969116009">来电咨询</a><a href="#top">回顶部↑</a></div></div> -->
+  </div>
+  </div>
+<?php include($cfg_templets_dir."/wap/footer.html");?>
