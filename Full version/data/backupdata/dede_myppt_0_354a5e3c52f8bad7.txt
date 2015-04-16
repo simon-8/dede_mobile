@@ -1,4 +1,0 @@
-INSERT INTO `dede_myppt` VALUES('1','2','0','1','/uploads/150415/1-15041521305H38.jpg','simon8.com');
-INSERT INTO `dede_myppt` VALUES('2','2','0','新闻标题测试一下','/uploads/150415/1-15041521305H38.jpg','simon8.com');
-INSERT INTO `dede_myppt` VALUES('3','2','0','新闻标题测试一下','/uploads/150415/1-15041521305H38.jpg','simon8.com');
-INSERT INTO `dede_myppt` VALUES('4','2','0','新闻标题测试一下','/uploads/150415/1-15041521305H38.jpg','simon8.com');

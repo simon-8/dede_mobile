@@ -1,6 +1,0 @@
-INSERT INTO `dede_wapchannel` VALUES('1','1');
-INSERT INTO `dede_wapchannel` VALUES('7','1');
-INSERT INTO `dede_wapchannel` VALUES('46','1');
-INSERT INTO `dede_wapchannel` VALUES('38','1');
-INSERT INTO `dede_wapchannel` VALUES('43','1');
-INSERT INTO `dede_wapchannel` VALUES('44','1');
