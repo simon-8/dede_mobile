@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title><?php echo $cfg_webname; ?>-<?php echo $cfg_softname." ".$cfg_version; ?></title>
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/catalog_menu.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/invalid.css" type="text/css" media="screen" />	
+<script language="javascript" src="js/jquery.min.js" type="text/javascript"></script>	
+<script type="text/javascript" src="js/admin.jquery.configuration.js"></script>
+<script src="js/frame.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" src="js/context_menu.js"></script>
+<script language="javascript" src="js/ieemu.js"></script>
+<script language="javascript" src="../include/js/dedeajax2.js"></script>
+<script language="javascript">
+function LoadSuns(ctid,tid)
+{
+	if($DE(ctid).innerHTML.length < 10){
+	  var myajax = new DedeAjax($DE(ctid),true,true,'','x','...');
+	  myajax.SendGet('catalog_do.php?dopost=GetSunListsMenu&cid='+tid);
+  }
+  else{ if(document.all) showHide(ctid); }
+}
+function showHide(objname)
+{
+   if($DE(objname).style.display=="none") $DE(objname).style.display = "block";
+	 else $DE(objname).style.display="none";
+	 return false;
+}
+if(moz) {
+	extendEventObject();
+	extendElementModel();
+	emulateAttachEvent();
+}
+
+
+function JumpOneUrl(surl)
+{
+	jQuery('#main',window.parent.document).get(0).src = surl;
+
+}
+
+//普通栏目
+function CommonMenu(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("增加内容",function(){ JumpOneUrl("catalog_do.php?cid="+tid+"&dopost=addArchives"); }),
+    new ContextItem("管理内容",function(){ JumpOneUrl("catalog_do.php?cid="+tid+"&dopost=listArchives"); }),
+    new ContextSeperator(),
+    new ContextItem("预览分类",function(){ window.open("<?php echo $cfg_phpurl; ?>/list.php?tid="+tid); }),
+    new ContextItem("更新HTML",function(){  JumpOneUrl("makehtml_list.php?cid="+tid); }),
+    new ContextItem("获取JS文件",function(){  JumpOneUrl("catalog_do.php?cid="+tid+"&dopost=GetJs"); }),
+    new ContextSeperator(),
+    new ContextItem("增加子类",function(){ JumpOneUrl("catalog_add.php?id="+tid); }),
+    new ContextItem("更改栏目",function(){ JumpOneUrl("catalog_edit.php?id="+tid); }),
+    new ContextSeperator(),
+    new ContextItem("移动栏目",function(){ JumpOneUrl("catalog_move.php?job=movelist&typeid="+tid); }),
+    new ContextItem("删除栏目",function(){ JumpOneUrl("catalog_del.php?id="+tid+"&typeoldname="+tname); }),
+    new ContextSeperator(),
+    new ContextItem("关闭菜单",function(){})
+  ]
+  ContextMenu.display(eobj,popupoptions)
+}
+//封面模板
+function CommonMenuPart(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("管理内容",function(){ JumpOneUrl("catalog_do.php?cid="+tid+"&dopost=listArchives"); }),
+    new ContextSeperator(),
+    new ContextItem("预览分类",function(){ window.open("<?php echo $cfg_phpurl; ?>/list.php?tid="+tid); }),
+    new ContextItem("更新HTML",function(){  JumpOneUrl("makehtml_list.php?cid="+tid); }),
+    new ContextItem("获取JS文件",function(){  JumpOneUrl("catalog_do.php?cid="+tid+"&dopost=GetJs"); }),
+    new ContextSeperator(),
+    new ContextItem("增加子类",function(){  JumpOneUrl("catalog_add.php?id="+tid); }),
+    new ContextItem("更改栏目",function(){  JumpOneUrl("catalog_edit.php?id="+tid); }),
+    new ContextSeperator(),
+    new ContextItem("移动栏目",function(){  JumpOneUrl("catalog_move.php?job=movelist&typeid="+tid); }),
+    new ContextItem("删除栏目",function(){  JumpOneUrl("catalog_del.php?id="+tid+"&typeoldname="+tname); }),
+    new ContextSeperator(),
+    new ContextItem("向上排前一级",function(){  JumpOneUrl("catalog_do.php?cid="+tid+"&dopost=upRank"); }),
+    new ContextSeperator(),
+    new ContextItem("关闭菜单",function(){})
+  ]
+  ContextMenu.display(eobj,popupoptions)
+}
+//单个页面
+function SingleMenu(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("更改栏目",function(){ JumpOneUrl("catalog_edit.php?id="+tid); }),
+    new ContextSeperator(),
+    new ContextItem("移动栏目",function(){ JumpOneUrl("catalog_move.php?job=movelist&typeid="+tid); }),
+    new ContextItem("删除栏目",function(){ JumpOneUrl("catalog_del.php?id="+tid+"&typeoldname="+tname); }),
+    new ContextSeperator(),
+    new ContextItem("关闭菜单",function(){})
+ ]
+  ContextMenu.display(eobj,popupoptions)
+}
+//跳转网址
+function JumpMenu(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("更改栏目",function(){ JumpOneUrl("catalog_edit.php?id="+tid); }),
+    new ContextSeperator(),
+    new ContextItem("移动栏目",function(){ JumpOneUrl("catalog_move.php?job=movelist&typeid="+tid); }),
+    new ContextItem("删除栏目",function(){ JumpOneUrl("catalog_del.php?id="+tid+"&typeoldname="+tname); }),
+    new ContextSeperator(),
+    new ContextItem("关闭菜单",function(){})
+ ]
+  ContextMenu.display(eobj,popupoptions)
+}
+</script>
+<style>
+.nbt{
+  font:12px 宋体; padding: 1px 1px 0 1px ;
+  vertical-align:middle ;
+  margin:2px 0 2px 0;
+  border-left:1px solid #DADF9D;
+  border-top:1px solid #DADF9D;
+  border-right:1px solid #666666;
+  border-bottom:1px solid #666666;
+  background:#eff6b6; height:21px ;
+  float:left;
+  margin-left:8px;
+}
+div,dd{ margin:0px; padding:0px }
+.dlf { margin-right:3px; margin-left:6px; margin-top:2px; float:left }
+.dlr { float:left }
+.topcc { margin-top:5px }
+.suncc { margin-bottom:3px }
+dl { clear:left; margin:0px; padding:0px }
+.sunct{  }
+#items1
+{
+	border-bottom: 1px solid #74c63f;
+  border-left: 1px solid #74c63f;
+  border-right: 1px solid #74c63f;
+}
+.sunlist { width:100%; padding-left:0px; margin:0px; clear:left } 
+.tdborder {
+  border-left: 1px solid #43938B;
+  border-right: 1px solid #43938B;
+  border-bottom: 1px solid #43938B;
+}
+.tdline-left {
+  border-bottom: 1px solid #656363;
+  border-left: 1px solid #788C47;
+}
+.tdline-right {
+  border-bottom: 1px solid #656363;
+  border-right: 1px solid #788C47;
+}
+.tdrl {
+border-left: 1px solid #788C47;
+border-right: 1px solid #788C47;
+}
+.top { cursor: pointer; }
+
+</style>
+<base target="main" />
+</head>
+<body target="main" onLoad="ContextMenu.intializeContextMenu()">
+<div id="body-wrapper"> <!-- Wrapper for the radial gradient background -->
+<div id="sidebar"><div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
+
+		
+			<h1 id="sidebar-title"><a href="#">信息管理系统</a></h1>
+		  
+			<!-- Logo (221px wide) -->
+			<a href="./"><img id="logo" src="images/logo.png" alt="zcncms logo" /></a>
+			<!-- Sidebar Profile links -->
+			<div id="profile-links">
+				Hello, <?php echo $cuserLogin->getUserName(); ?>				<br />
+				<a href="sys_cache_up.php" title="清理缓存" target="main">清理缓存</a> | <!--<a href="./" title="前台首页">后台首页</a> |  --><a href="/index.php?upcache=1" title="前台首页" target="_blank">前台首页</a> | <a href="exit.php" title="退出" target="_parent">退出</a> 
+			</div>        
+			
+			<ul id="main-nav">  <!-- Accordion Menu -->
+				<li>
+					<a href="index_body.php" onClick="JumpFrame('index_menu.php','index_body.php');" class="nav-top-item no-submenu"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+						管理首页
+					</a>                                                          
+				</li>
+                				
+				<li>
+					<a href="public_guide.php" class="nav-top-item no-submenu current"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+						站点目录树
+					</a>
+                    <ul>
+                        <?php 
+                        $tu = new TypeUnit($userChannel);
+                        $tu->ListAllType($userChannel,$opendir);
+                        ?>
+                    </ul>
+                                  
+				</li>
+                
+				
+		
+			</ul> <!-- End #main-nav -->
+
+                    <script>
+                $(".nav-bottom-item").click(function(){
+                    $(".nav-bottom-item").removeClass('current');
+                    $(".nav-top-item").removeClass('current');
+                    $(this).addClass("current");
+                    $(this).parents("li").children(".nav-top-item").addClass("current");
+                });   
+			 
+                </script>	
+
+				
+			</div> <!-- End #messages -->
+
+			<!-- End #messages -->
+			
+		</div></div>
+
+	</div>
+<script language="javascript">
+function JumpFrame(url1, url2){
+    jQuery('#menufra',window.parent.document).get(0).src = 'index_menu.php';
+    jQuery('#main',window.parent.document).get(0).src = 'index_body.php';
+}
+</script>     
+</body>
+</html>
+

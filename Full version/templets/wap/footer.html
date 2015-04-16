@@ -1,0 +1,78 @@
+<footet>
+<div class="xk_quandibg">
+<div class="xk_quandi">
+<h1>
+
+
+<p>Copyright &copy; <?php echo $company;?><br/>
+版权所有：<?php echo $company;?><br/>
+技术支持：<a href="http://www.finesales.com.cn/" target="_blank">南通涌砚软件技术有限公司</a>&reg;</p></h1>
+</div>
+</div>
+</footet>
+  </div>
+<!--=========================-->
+<aside class="aside" id="aside">
+
+  <div class="nv">
+    <ul>
+      <li><a href="/wap.php">网站首页</a></li>
+      <?php foreach ($side_cate as $key => $value) {  ?>
+      <li><a href="<?php echo $link.$value['id'];?>"><?php echo $value['typename'];?></a></li>
+      <?php } ?>
+    </ul>
+  </div>
+</aside>
+<aside class="aside" id="cate">
+
+  <div class="nv">
+    <ul>
+  <li><a href="<?php echo $link.$category['0']['topid'];?>"  <?php if($category['0']['topid'] == $typeid){ echo "style='background:red'";}  ?>>全部分类</a></li>
+<?php foreach ($category as $k => $v) { ?>
+<li><a href="<?php echo $link.$v['id'];?>" <?php if($v['id'] == $typeid){ echo "style='background:red'";}?> ><?php echo $v['typename'];?></a></li>
+<?php } ?>
+    </ul>
+  </div>
+</aside>
+<div class="quick_nav" id="quick_nav">
+<div class="quick_btn"></div>
+<div class="quick_con hide">
+  <ul class="quick_list">
+    <li class="qnav_home"><a href="/wap.php">首页</a></li>
+    <li class="qnav_one"><a href="email:<?php echo $email;?>">邮件</a></li>
+    <li class="qnav_two"><a href="tel:<?php echo $mobile;?>">电话</a></li>
+    <li class="qnav_three"><a href="<?php echo $link.'88';?>">地址</a></li>
+    <li class="qnav_four"><a href="<?php echo $link.'4';?>">案例</a></li>
+    <li class="qnav_five"><a href="<?php echo $link.'1000';?>">地图</a></li>
+    <li class="qnav_six"><a href="<?php echo $link.'99';?>">工具</a></li>
+  </ul>
+</div>
+</div>
+<div id="mess-box" style="display:none;">
+  <div style="height:32px"><span id="close-box" onclick="close_msg()">X</span></div>
+  <div class="zhong">
+      <a href="tel:<?php echo $mobile;?>" style="color:white;"><div class="telephone">
+      <img src="<?php echo $skin;?>images/telephone.gif" alt=""><h2>一键拨号</h2>
+      </div></a>
+      <a href="sms:<?php echo $mobile;?>" style="color:white;"><div class="telephone" style="margin:30px 0">
+      <img src="<?php echo $skin;?>images/huifu.png" alt=""><h2>发送短信</h2>
+      </div></a>
+      <div class="telephone">
+      <a href="tel:<?php echo $mobile;?>" style="color:white;"><img src="<?php echo $skin;?>images/zc.png" alt=""><h2>新建联系人</h2>
+      </div></a>
+
+  </div>
+</div>
+<div id="float">
+  <table cellspacing="0" cellpadding="0">
+    <tr>
+      <td onclick="location='/wap.php'"><img src="<?php echo $skin;?>images/bt1.gif" alt=""/><p>首页</p></a></td>
+      <td onclick="location='/wap.php?typeid=100'"><img src="<?php echo $skin;?>images/bt2.gif" alt=""/><p>分享</p></td>
+      <td onclick="javascript:history.go(1);"><img src="<?php echo $skin;?>images/bt3.gif" alt=""/><p>前进</p></td>
+      <td onclick="javascript:history.go(-1);"><img src="<?php echo $skin;?>images/bt4.gif" alt=""/><p>后退</p></td>
+      <td onclick="location.reload(true);"><img src="<?php echo $skin;?>images/bt5.gif" alt=""/><p>刷新</p></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<?php include($cfg_templets_dir."/wap/head.html");?>
+<?php include($cfg_templets_dir."/wap/header-show.html");?>
+<div class="aside-left main" id="main">
+  <div class="mains">
+
+<div class="wapindex wapindex-aspx">
+
+
+<div class="content">
+<h2 class="titleview"><?php echo $article['title'];?></h2>
+<div style="clear:both"></div>
+      <div id="slideBox" class="slideBox">
+
+        <div class="bd">
+          <ul>
+              <li>
+                <a class="pic" href="#"><img src="<?php echo $article['litpic'];?>" /></a>
+              </li>
+          </ul>
+        </div>
+
+        <div class="hd">
+          <ul></ul>
+        </div>
+      </div>
+      <script type="text/javascript">
+        //TouchSlide({ 
+         // slideCell:"#slideBox",
+         // titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+         // mainCell:".bd ul", 
+         // effect:"leftLoop", 
+        //  autoPage:true,//自动分页
+        //  autoPlay:true //自动播放
+       // });
+      </script>
+<div class="telephone" style="height:30px;line-height:30px;border-radius:0"><h4>产品描述</h4></div>
+      <p align="center"></p>
+<!--listS-->
+<?php echo $content;?>
+<br>
+<!--listE--><span id="KL_show_next_list"></span></div>
+
+
+<div class="pagebar"> 
+     <section class="active pagePrev" onclick="location='<?php echo $prev['url'];?>'">
+        <p class="p1">上一条</p>
+        <p class="p2"><?php echo $prev['title'];?></p>
+        <p class="arrow"></p>
+     </section>
+     <section class="active pageNext" onclick="location='<?php echo $next['url'];?>'">
+        <p class="p1">下一条</p>
+        <p class="p2"><?php echo $next['title'];?></p>
+        <p class="arrow"></p>
+     </section>
+</div>
+<style>
+
+</style>
+<!-- <div class="btBox"><div class="bt2"><a href="tel:18969116009">来电咨询</a><a href="#top">回顶部↑</a></div></div> -->
+</div>
+</div>
+
+<?php include($cfg_templets_dir."/wap/footer.html");?>

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>
+网站栏目管理</title>
+
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+<script language="javascript" src="js/jquery.min.js" type="text/javascript"></script>	
+<script type="text/javascript" src="js/admin.jquery.configuration.js"></script>
+
+<script language="javascript" src="js/global.js"></script>
+<script language="javascript" src="js/context_menu.js"></script>
+<script language="javascript" src="js/ieemu.js"></script>
+<script language="javascript" src="js/dialog.js"></script>
+<script language="javascript" src="../include/js/dedeajax2.js"></script>
+<script language="javascript">
+function LoadSuns(ctid,tid)
+{
+    
+	if($DE(ctid).innerHTML.length < 10){
+      $DE('img'+tid).src = 'images/dedecontract.gif';
+	  var myajax = new DedeAjax($DE(ctid));
+	  myajax.SendGet('catalog_do.php?dopost=GetSunLists&cid='+tid);
+  }
+  else{ 
+  showHide(ctid,tid); 
+  }
+}
+function showHide(objname,tid)
+{
+    
+    if($DE(objname).style.display=="none")
+    {
+        $DE('img'+tid).src = 'images/dedecontract.gif';
+        $DE(objname).style.display = BROWSER.firefox? "" : "block";
+    } else {
+        $DE('img'+tid).src = 'images/dedeexplode.gif';
+        $DE(objname).style.display="none";
+    }
+}
+if(moz) {
+	extendEventObject();
+	extendElementModel();
+	emulateAttachEvent();
+}
+//普通栏目
+function CommonMenu(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("增加内容",function(){location="catalog_do.php?cid="+tid+"&dopost=addArchives";}),
+    new ContextItem("管理内容",function(){location="catalog_do.php?cid="+tid+"&dopost=listArchives";}),
+    new ContextSeperator(),
+    new ContextItem("预览分类",function(){ window.open("<?php echo $cfg_phpurl; ?>/list.php?tid="+tid); }),
+    new ContextItem("更新HTML",function(){ location="makehtml_list.php?cid="+tid; }),
+    new ContextItem("获取JS文件",function(){ location="catalog_do.php?cid="+tid+"&dopost=GetJs"; }),
+    new ContextSeperator(),
+    new ContextItem("增加子类",function(){location="catalog_add.php?id="+tid;}),
+    new ContextItem("更改栏目",function(){location="catalog_edit.php?id="+tid;}),
+    new ContextSeperator(),
+    new ContextItem("合并栏目",function(){location='catalog_do.php?dopost=unitCatalog&typeid='+tid}),
+    new ContextItem("移动栏目",function(){location='catalog_do.php?dopost=moveCatalog&typeid='+tid}),
+    new ContextItem("删除栏目",function(){location="catalog_del.php?id="+tid+"&typeoldname="+tname;}),
+    new ContextSeperator(),
+    new ContextItem("向上排前一级",function(){ location="catalog_do.php?cid="+tid+"&dopost=upRank"; }),
+    new ContextItem("关闭菜单(<u>C</u>)",function(){})
+  ]
+  ContextMenu.display(eobj,popupoptions)
+}
+//封面模板
+function CommonMenuPart(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("管理内容",function(){location="catalog_do.php?cid="+tid+"&dopost=listArchives";}),
+    new ContextSeperator(),
+    new ContextItem("预览分类",function(){ window.open("<?php echo $cfg_phpurl; ?>/list.php?tid="+tid); }),
+    new ContextItem("更新HTML",function(){ location="makehtml_list.php?cid="+tid; }),
+    new ContextItem("获取JS文件",function(){ location="catalog_do.php?cid="+tid+"&dopost=GetJs"; }),
+    new ContextSeperator(),
+    new ContextItem("增加子类",function(){location="catalog_add.php?id="+tid;}),
+    new ContextItem("更改栏目",function(){location="catalog_edit.php?id="+tid;}),
+    new ContextSeperator(),
+    new ContextItem("移动栏目",function(){location='catalog_move.php?job=movelist&typeid='+tid}),
+    new ContextItem("删除栏目",function(){location="catalog_del.php?id="+tid+"&typeoldname="+tname;}),
+    new ContextSeperator(),
+    new ContextItem("向上排前一级",function(){ location="catalog_do.php?cid="+tid+"&dopost=upRank"; }),
+    new ContextItem("关闭菜单(<u>C</u>)",function(){})
+  ]
+  ContextMenu.display(eobj,popupoptions)
+}
+//跳转栏目
+function SingleMenu(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("更改栏目",function(){location="catalog_edit.php?id="+tid;}),
+    new ContextSeperator(),
+    new ContextItem("移动栏目",function(){location='catalog_move.php?job=movelist&typeid='+tid}),
+    new ContextItem("删除栏目",function(){location="catalog_del.php?id="+tid+"&typeoldname="+tname;}),
+    new ContextSeperator(),
+    new ContextItem("向上排前一级",function(){ window.location="catalog_do.php?cid="+tid+"&dopost=upRank"; }),
+  new ContextItem("关闭菜单(<u>C</u>)",function(){})
+  ]
+  ContextMenu.display(eobj,popupoptions)
+}
+</script>
+<style>
+.coolbg2 {
+border: 1px solid #000000;
+background-color: #F2F5E9;
+height:18px
+}
+.coolbt2 {
+  border-left: 2px solid #EFEFEF;
+  border-top: 2px solid #EFEFEF;
+  border-right: 2px solid #ACACAC;
+  border-bottom: 2px solid #ACACAC;
+  background-color: #F7FCDA
+}
+.nbline {border-bottom: 1px solid #d6d6d6; background-color:#FFFFFF; }
+.bline2 {border-bottom: 1px solid #d6d6d6; background-color:#F9FCEF; }
+</style>
+</head>
+<body onLoad="ContextMenu.intializeContextMenu()">
+<div id="main-content">			
+
+	<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>网站栏目管理</h3>
+					
+					<ul class="content-box-tabs">
+						<li><a href="catalog_add.php?listtype=all">增加顶级栏目</a></li> <!-- href must be unique and match the id of target div --> 
+						<li><a href="#" onClick="document.form1.submit();">更新排序</a></li>
+                        <li><a href="catalog_add.php?dopost=quick">批量增加栏目</a></li>
+                        
+					</ul>
+					
+					<div class="clear"></div>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+<div class="tab-content  default-tab" id="tab1">				
+						
+							
+							<table>
+						 
+							<thead>
+								<tr>
+								   <!--<th><input class="check-all" type="checkbox" /></th> -->
+								   <th>标题</th>
+								   <th>操作</th>
+								</tr>
+								
+							</thead>
+							
+							<tbody>
+								<form name='form1' method='post' action='catalog_do.php?dopost=upRankAll'>
+                                <?php
+                                if(empty($opendir)) $opendir=-1;
+                                if($userChannel>0) $opendir=$userChannel;
+                                $tu = new TypeUnit();
+                                $tu->ListAllType($userChannel,$opendir);
+                                ?>
+								</form>
+
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="6">
+										<!-- <div class="bulk-actions align-left">
+											<select name="dropdown">
+												<option>操作</option>
+												<option value="del">删除</option>
+											</select>
+											<a class="button" href="javascript:alert('暂无');">选择操作</a>
+										</div> -->
+										
+										<div class="pagination">
+											
+										</div> <!-- End .pagination -->
+										<div class="clear"></div>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+							
+							<div class="clear"></div><!-- End .clear -->
+							
+						
+						
+					</div> <!-- End #tab1 -->
+
+					
+				</div> <!-- End .content-box-content -->
+				
+			</div> <!-- End .content-box -->
+			
+			<div class="clear"></div>
+			
+           <?php include(DEDEADMIN.'/templets/footer.htm'); ?>
+			
+		</div> <!-- End #main-content -->	
+	</div>
+</body>
+</html>
+

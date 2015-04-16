@@ -1,0 +1,70 @@
+<?php include($cfg_templets_dir."/wap/head.html");?>
+<?php include($cfg_templets_dir."/wap/header-index.html");?>
+<div class="aside-left main" id="main">
+  <div class="mains">
+
+<div class="wapindex wapindex-aspx">
+
+			<div id="slideBox" class="slideBox">
+
+				<div class="bd">
+					<ul>
+<?php foreach ($flash as $k => $t) { ?>
+              <li>
+                <a class="pic" href="<?php echo $t['url'];?>"><img src="<?php echo $t['pic'];?>" /></a>
+              </li>
+
+<?php } ?>
+					</ul>
+				</div>
+
+				<div class="hd">
+					<ul></ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+				TouchSlide({ 
+					slideCell:"#slideBox",
+					titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+					mainCell:".bd ul", 
+					effect:"leftLoop", 
+					autoPage:true,//自动分页
+					autoPlay:true //自动播放
+				});
+			</script>
+      
+  <div class="xk_box">
+  <p>最新公告</p>
+  <div class="t_news">
+    <ul class="news_li"id="news_li">
+<?php foreach ($news as $k => $v) { ?>
+      <li><a href="<?php echo $link.$v['typeid'].'&id='.$v['id'];?>" style="color:black"><?php echo $v['title'];?></a></li>
+<?php }?>
+    </ul>
+    <ul class="swap">
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+tervalTop();
+</script>
+<div class="zhong">
+  <div class="telephone">
+    <img src="<?php echo $skin;?>images/telephone.gif" alt=""><h2><a href="tel:<?php echo $mobile;?>" style="color:white;"><?php echo $mobile;?></a></h2>
+  </div>
+  <table cellspacing="2">
+  <?php  $i=0;foreach ($cate as $k => $v) {   ?>
+    <?php if($i == 0 or $i%3 == 0) echo "<tr>"; ?>
+      <td><a href="/wap.php?typeid=<?php echo $v['id'];?>"><img src="<?php echo $v['typelitpic'];$i++;?>" alt=""></a></td>
+    <?php if($i == 0 or $i%3 == 0) echo "</tr>"; ?>    
+  <?php } ?>
+
+  </table>
+</div>
+   <div style="clear:both"></div>
+   <!--导航结束-->
+<!-- <div class="btBox"><div class="bt2"><a href="tel:18969116009">来电咨询</a><a href="#top">回顶部↑</a></div></div> -->
+</div>
+  </div>
+<div style="clear:both;height:5px;background: white;"></div>
+<?php include($cfg_templets_dir."/wap/footer.html");?>

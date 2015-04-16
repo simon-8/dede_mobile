@@ -1,0 +1,2 @@
+INSERT INTO `dede_myppttype` VALUES('1','Ê×Ò³»ÃµÆÆ¬');
+INSERT INTO `dede_myppttype` VALUES('2','ÊÖ»ú°æ»ÃµÆÆ¬');
